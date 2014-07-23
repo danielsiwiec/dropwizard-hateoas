@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 dependencies {
     compile 'io.dropwizard:dropwizard-core:0.7.1'
@@ -9,3 +10,5 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+mainClassName = "service.PersonApplication"
