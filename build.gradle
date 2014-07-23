@@ -2,7 +2,8 @@ apply plugin: 'java'
 
 dependencies {
     compile 'io.dropwizard:dropwizard-core:0.7.1'
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.14.2'
+    compile 'org.projectlombok:lombok:1.14.2'
+    compile 'com.sun.jersey:jersey-server-linking:1.18.1'
 }
 
 repositories {
