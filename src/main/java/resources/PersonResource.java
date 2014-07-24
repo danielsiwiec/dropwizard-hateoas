@@ -1,12 +1,11 @@
 package resources;
 
 import model.Person;
+import model.PersonListItem;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Path("/person")
 @Produces(MediaType.APPLICATION_JSON)
@@ -21,8 +20,12 @@ public class PersonResource {
     }
 
     @GET
-    public Collection<Person> get() {
-        return people.values();
+    public List<PersonListItem> get() {
+        List<PersonListItem> items = new ArrayList<>();
+        for (Person person : people.values()){
+            items.add(new PersonListItem(person.getId(),person.getFirstName()));
+        }
+        return items;
     }
 
     @PUT
