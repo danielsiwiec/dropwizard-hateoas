@@ -1,17 +1,24 @@
 package resources;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import model.Person;
 import model.PersonListItem;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.collect.Iterables.transform;
+
 
 @Path("/person")
 @Produces(MediaType.APPLICATION_JSON)
 public class PersonResource {
 
-    Map<Long,Person> people = new HashMap<Long, Person>();
+    Map<Long,Person> people = new HashMap<>();
 
     @GET
     @Path("{id}")
@@ -21,11 +28,11 @@ public class PersonResource {
 
     @GET
     public List<PersonListItem> get() {
-        List<PersonListItem> items = new ArrayList<>();
-        for (Person person : people.values()){
-            items.add(new PersonListItem(person.getId(),person.getFirstName()));
-        }
-        return items;
+        return Lists.newArrayList(transform(people.values(), new Function<Person, PersonListItem>() {
+            public PersonListItem apply(Person input) {
+                return new PersonListItem(input.getId(), input.getFirstName());
+            }
+        }));
     }
 
     @PUT
