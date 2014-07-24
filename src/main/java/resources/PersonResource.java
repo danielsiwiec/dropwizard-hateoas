@@ -4,22 +4,30 @@ import model.Person;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Path("/person/{id}")
+@Path("/person")
 @Produces(MediaType.APPLICATION_JSON)
 public class PersonResource {
 
     Map<Long,Person> people = new HashMap<Long, Person>();
 
     @GET
+    @Path("{id}")
     public Person getPerson(@PathParam("id") Long id) {
         return people.get(id);
     }
 
+    @GET
+    public Collection<Person> get() {
+        return people.values();
+    }
+
     @PUT
+    @Path("{id}")
     public void createPerson(@PathParam("id") Long id, Person person) {
-        people.put(id,person);
+        people.put(id,new Person(id, person.getFirstName(), person.getLastName()));
     }
 }

@@ -2,26 +2,30 @@ package model;
 
 import com.sun.jersey.server.linking.Link;
 import com.sun.jersey.server.linking.Ref;
-import lombok.Value;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import resources.PersonResource;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
-@Value
-@Link(value = @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, value = "{id}"), rel="self")
+@Getter
+@EqualsAndHashCode
+@RequiredArgsConstructor
+@Link(value = @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, method = "getPerson"), rel="self")
 public class Person {
 
-    @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, value = "{id}")
-    private final URI self;
+    @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, method = "getPerson")
+    private URI self;
+    @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, method = "get")
+    private URI all;
     private final Long id;
     private final String firstName;
     private final String lastName;
 
-    public Person() throws URISyntaxException {
+    public Person() {
         id=0l;
         firstName="";
         lastName="";
-        self = null;
     }
 }
