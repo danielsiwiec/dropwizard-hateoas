@@ -1,5 +1,6 @@
 PUT: http://localhost:8080/person/1
 
+```
 {
   "firstName": "Ann",
   "lastName": "Becker",
@@ -8,5 +9,6 @@ PUT: http://localhost:8080/person/1
     "email": "ann@example.com"
   }
 }
+```
 
 GET: http://localhost:8080/person
