@@ -38,6 +38,6 @@ public class PersonResource {
     @PUT
     @Path("{id}")
     public void createPerson(@PathParam("id") Long id, Person person) {
-        people.put(id,new Person(id, person.getFirstName(), person.getLastName()));
+        people.put(id,new Person(id, person.getFirstName(), person.getLastName(), person.getContactInfo()));
     }
 }

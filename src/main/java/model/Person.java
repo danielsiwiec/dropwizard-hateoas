@@ -12,7 +12,7 @@ import java.net.URI;
 @Getter
 @EqualsAndHashCode
 @RequiredArgsConstructor
-@Link(value = @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, method = "getPerson"), rel="self")
+@Link(value = @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, method = "getPerson"), rel = "self")
 public class Person {
 
     @Ref(resource = PersonResource.class, style = Ref.Style.ABSOLUTE, method = "getPerson")
@@ -22,10 +22,26 @@ public class Person {
     private final Long id;
     private final String firstName;
     private final String lastName;
+    private final ContactInfo contactInfo;
 
-    public Person() {
-        id=0l;
-        firstName="";
-        lastName="";
+    private Person() {
+        id = null;
+        firstName = null;
+        lastName = null;
+        contactInfo = null;
+    }
+}
+
+@Getter
+@EqualsAndHashCode
+@RequiredArgsConstructor
+class ContactInfo {
+
+    private final String address;
+    private final String email;
+
+    public ContactInfo() {
+        address = null;
+        email = null;
     }
 }

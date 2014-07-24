@@ -28,7 +28,6 @@ public class PersonApplication extends Application<Configuration> {
     public void run(Configuration configuration, Environment environment) throws Exception {
         environment.jersey().register(new PersonResource());
         environment.jersey().property(ResourceConfig.PROPERTY_CONTAINER_RESPONSE_FILTERS, LinkFilter.class);
-
         addCorsHeaders(environment);
     }
 
