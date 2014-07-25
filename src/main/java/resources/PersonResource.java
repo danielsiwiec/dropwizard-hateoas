@@ -19,6 +19,7 @@ import static com.google.common.collect.Iterables.transform;
 public class PersonResource {
 
     Map<Long,Person> people = new HashMap<>();
+    Long currentId = 0l;
 
     @GET
     @Path("{id}")
@@ -35,9 +36,9 @@ public class PersonResource {
         }));
     }
 
-    @PUT
-    @Path("{id}")
-    public void createPerson(@PathParam("id") Long id, Person person) {
-        people.put(id,new Person(id, person.getFirstName(), person.getLastName(), person.getContactInfo()));
+    @POST
+    public void createPerson(Person person) {
+        people.put(currentId,new Person(currentId, person.getFirstName(), person.getLastName(), person.getContactInfo()));
+        currentId++;
     }
 }
