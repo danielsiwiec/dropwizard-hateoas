@@ -1,4 +1,6 @@
-PUT: http://localhost:8080/person/1
+To run: `gradle run`
+
+POST: http://localhost:8080/person
 
 ```
 {
