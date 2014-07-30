@@ -13,4 +13,4 @@ POST: http://localhost:8080/person
 }
 ```
 
-GET: http://localhost:8080/person
+GET: [http://localhost:8080/person](http://localhost:8080/person)
