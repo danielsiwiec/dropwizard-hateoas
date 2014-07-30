@@ -32,16 +32,3 @@ public class Person {
     }
 }
 
-@Getter
-@EqualsAndHashCode
-@RequiredArgsConstructor
-class ContactInfo {
-
-    private final String address;
-    private final String email;
-
-    public ContactInfo() {
-        address = null;
-        email = null;
-    }
-}

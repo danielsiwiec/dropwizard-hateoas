@@ -6,6 +6,8 @@ import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import model.ContactInfo;
+import model.Person;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import resources.PersonResource;
 
@@ -26,9 +28,16 @@ public class PersonApplication extends Application<Configuration> {
 
     @Override
     public void run(Configuration configuration, Environment environment) throws Exception {
-        environment.jersey().register(new PersonResource());
+        PersonResource personResource = new PersonResource();
+        environment.jersey().register(personResource);
         environment.jersey().property(ResourceConfig.PROPERTY_CONTAINER_RESPONSE_FILTERS, LinkFilter.class);
         addCorsHeaders(environment);
+        populateWithTestData(personResource);
+    }
+
+    private void populateWithTestData(PersonResource personResource) {
+        personResource.add(new Person(null, "Bill", "Clinton", new ContactInfo("123 Broadway St", "bill@clinton.gov")));
+        personResource.add(new Person(null, "George", "Bush", new ContactInfo("2140 6th Ave", "george@bush.gov")));
     }
 
     private void addCorsHeaders(Environment environment) {

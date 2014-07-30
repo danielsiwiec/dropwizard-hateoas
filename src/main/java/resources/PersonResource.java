@@ -37,7 +37,7 @@ public class PersonResource {
     }
 
     @POST
-    public void createPerson(Person person) {
+    public void add(Person person) {
         people.put(currentId,new Person(currentId, person.getFirstName(), person.getLastName(), person.getContactInfo()));
         currentId++;
     }
